@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :paths => 'users'
+  devise_for :users, :controllers => {registrations: 'registrations' }
+
  
   root to: 'application#welcome'
   resource :user do
