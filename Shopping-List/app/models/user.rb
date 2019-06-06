@@ -5,5 +5,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
     has_many :shoppinglists
-  	has_many :items, through: :shoppinglists
 end

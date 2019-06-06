@@ -1,4 +1,4 @@
 class Shoppinglist < ApplicationRecord
 	belongs_to :user
-	belongs_to :item
+	has_many :items, through: :item_lists
 end
