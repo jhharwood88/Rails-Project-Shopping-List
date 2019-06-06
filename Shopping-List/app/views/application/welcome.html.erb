@@ -1,6 +1,7 @@
 <center><h1>Welcome to the Shopping List Builder</h1></center>
 <% if current_user  %>
 	<center><h2>Welcome back, <%= current_user.username%>!</h2></center>
+	<center><%= link_to "Your Recipies Page", user_items_path, method: "get"%></center>
 <% else %>
 	<center><h2>Please Log In or Sign Up!</h2></center>
 <% end%>
