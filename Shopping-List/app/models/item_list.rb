@@ -1,6 +1,6 @@
 class ItemList < ApplicationRecord
 
-	belongs_to :shopping_list
+	belongs_to :list
 	belongs_to :item
 
 	validates :item_id, presence: true

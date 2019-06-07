@@ -1,12 +1,10 @@
-class ShoppingListsController < ApplicationController
+class ListsController < ApplicationController
 
 	# before_action :user_signed_in?
 
 	def index 
-		@all_lists = Shoppinglist.all
 		
-
-		render '/shoppinglists/index'
+	
 	end
 
 	# def create
