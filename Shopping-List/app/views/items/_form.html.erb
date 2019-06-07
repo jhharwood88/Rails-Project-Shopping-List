@@ -1,5 +1,5 @@
-<% if item.errors %>
-  <%  item.errors.full_messages.each do |error| %>
+<% if @item.errors %>
+  <%  @item.errors.full_messages.each do |error| %>
     <h4><%= error %></h4>
   <%end%>
 <%end%>
@@ -9,10 +9,10 @@
   <%= f.text_field :name %>
   </br>
   <%= f.label "Category" %></br>
-  <%= f.text_area :category %>
+  <%= f.text_field :category %>
   </br>
   <%= f.label "Price" %></br>
-  <%= f.text_area :price %>
+  <%= f.text_field :price %>
   </br>
   <%= f.submit %>
 <% end %>
