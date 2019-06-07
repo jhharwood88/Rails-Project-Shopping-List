@@ -2,16 +2,11 @@ Notes:
 
 devise is acceptable for omniauth 
 
-
 ToDo:
 
+lookup how to access "undefined method `relation_delegate_class'"
 
 
-
-
-
-new join on item list, shopping list is no longer a join table
-	a shopping list is always associated with a user, creating new list associates items with list through itemid.
 
 
 Done:
@@ -19,3 +14,8 @@ Done:
 remove quantity from item, item list has item id and quantity 
 
 include validations for item model, validate presence on name for shopping list/item list
+
+add shoppinglist id to itemlist
+
+new join on item list, shopping list is no longer a join table
+	a shopping list is always associated with a user, creating new list associates items with list through itemid.

@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_222538) do
+ActiveRecord::Schema.define(version: 2019_06_06_232053) do
 
   create_table "item_lists", force: :cascade do |t|
     t.integer "item_id"
     t.integer "quantity"
+    t.integer "shopping_list_id"
+    t.index ["shopping_list_id"], name: "index_item_lists_on_shopping_list_id"
   end
 
   create_table "items", force: :cascade do |t|

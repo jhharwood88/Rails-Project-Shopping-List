@@ -1,6 +1,13 @@
-class ShoppinglistsController < ApplicationController
+class ShoppingListsController < ApplicationController
 
 	# before_action :user_signed_in?
+
+	def index 
+		@all_lists = Shoppinglist.all
+		
+
+		render '/shoppinglists/index'
+	end
 
 	# def create
  #    cart = Shoppinglist.create(name: params[:name], user_id: current_user.id)
