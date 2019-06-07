@@ -1,3 +1,7 @@
+<% @all_lists.each do |list|%>
+	<center><%= link_to "#{list.name}", user_list_path(list), method: "get"%></center>
+<%end%>
+
 <center><%= link_to "Create a new Shopping List", new_user_list_path, method: "get"%></center>
 
 <center><%= link_to "List of all Items", items_path, method: "get"%></center>

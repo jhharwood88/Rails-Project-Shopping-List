@@ -1,26 +1,30 @@
 class ListsController < ApplicationController
 
-	# before_action :user_signed_in?
+	before_action :authenticate_user!
 
 	def index 
-		
+		@all_lists = List.all
 	end
 
 	def new
 		@list = List.new 
+		@list.user = current_user
 	end
 
 	def create
-		@list = List.create(list_params)
-		if @list
-			redirect_to list_path(@list)
+		@list = current_user.lists.build(list_params)
+		if @list.save
+			redirect_to user_list_path([@list.user,@list])
+		else
+			render :new
+			#color red for error fields
 		end
 	end
 
 	private
 
 	  def list_params
-	    params.require(:list).permit(:name, :user_id)
+	    params.require(:list).permit(:name)
 	  end
 
 end

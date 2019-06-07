@@ -6,6 +6,6 @@ Rails.application.routes.draw do
  
   root to: 'application#welcome'
   resource :user do
-    resources :lists, only: [:index, :new, :create]
+    resources :lists, only: [:index, :show, :new, :create]
   end
 end
