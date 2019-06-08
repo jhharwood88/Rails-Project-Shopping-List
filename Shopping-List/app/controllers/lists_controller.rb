@@ -3,7 +3,11 @@ class ListsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index 
-		@all_lists = List.all
+		current_user_lists
+	end
+
+	def show 
+		@list = List.find(params[:id])
 	end
 
 	def new
@@ -21,10 +25,22 @@ class ListsController < ApplicationController
 		end
 	end
 
-	private
+private
+	
+	def current_user_lists
+		@current_user_list = []
+	 	@all_lists = List.all
+		@all_lists.each do |list|
+			if list.user_id == current_user.id
+				@current_user_list << list
+			end
+		end
+		@current_user_list
+	end
 
-	  def list_params
-	    params.require(:list).permit(:name)
-	  end
+
+	def list_params
+	  params.require(:list).permit(:name)
+	end
 
 end
