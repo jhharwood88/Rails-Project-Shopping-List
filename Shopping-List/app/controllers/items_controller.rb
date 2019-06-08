@@ -30,7 +30,13 @@ class ItemsController < ApplicationController
 	  redirect_to items_path
 	end
 
-	
+	def destroy
+		find_item_id
+		if @item
+			@item.destroy
+			redirect_to items_path
+		end
+	end
 
   private
 
