@@ -1,7 +1,9 @@
 <% @items.each do |item| %></br>
 	<p>Name:<%=item.name%></p>
 	<p>Category:<%=item.category%></p>
-	<p>Price: $<%=item.price%>0</p></br>
+	<p>Price: $<%=item.price%>0</p>
+	<%= link_to "Edit #{item.name}", edit_item_path(item.id), method: "get"%></br>
+	</br>
 <% end %>
 
 <%= link_to "Create a New Item", new_item_path, method: "get"%></br>

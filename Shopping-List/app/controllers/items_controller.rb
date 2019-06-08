@@ -19,9 +19,27 @@ class ItemsController < ApplicationController
 		end
 	end
 
+	def edit
+		find_item_id
+	end
+
+	def update
+		
+		find_item_id
+		@item.update(params.require(:item).permit(:name, :category, :price))
+	  redirect_to items_path
+	end
+
+	
+
   private
 
-	  def item_params
-	    params.require(:item).permit(:name, :category, :price)
-	  end
+  	def find_item_id
+  		@item = Item.find(params[:id])
+  	end
+
+
+	def item_params
+	  params.require(:item).permit(:name, :category, :price)
+	end
 end
