@@ -8,6 +8,15 @@ class ListsController < ApplicationController
 
 	def show 
 		@list = List.find(params[:id])
+		
+		# access the item_list that matches my list id *@list.items*
+
+		#give a way for users to add an item to the item_list array
+
+		# ???
+		# to access array of all item lists = @list.item_lists
+
+		#update the view to show the newly added item
 	end
 
 	def new
@@ -21,7 +30,6 @@ class ListsController < ApplicationController
 			redirect_to user_list_path([@list.user,@list])
 		else
 			render :new
-			#color red for error fields
 		end
 	end
 
