@@ -5,4 +5,6 @@ class List < ApplicationRecord
 
   validates :name, presence: true
 
+  binding.pry
+
 end

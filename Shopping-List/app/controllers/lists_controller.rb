@@ -8,8 +8,8 @@ class ListsController < ApplicationController
 
 	def show 
 		@list = List.find(params[:id])
-		# @user = User.current_user_lists
 		@user_lists = current_user.lists[params[:id].to_i-1].item_lists
+		binding.pry
 		
 		
 		# access the item_list that matches my list id *@list.items*

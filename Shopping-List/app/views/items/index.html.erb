@@ -1,3 +1,14 @@
+<% if !params[:category].blank? %>
+  <% @items = Item.where(category: params[:category]) %>
+<% end %>
+<div>
+  <h3>Filter Items:</h3>
+  <%= form_tag("/items", method: "get") do %>
+    <%= select_tag "category", options_from_collection_for_select(Item.all.to_a.uniq{ |c| c.category }, "category", "category"), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
+
 <% @items.each do |item| %></br>
 	<p>Name:<%=item.name%></p>
 	<p>Category:<%=item.category%></p>

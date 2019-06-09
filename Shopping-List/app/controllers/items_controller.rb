@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+	helper_method :params
 
 	def index
 		@items = Item.all
