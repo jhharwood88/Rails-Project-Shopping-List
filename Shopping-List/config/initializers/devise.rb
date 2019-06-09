@@ -297,10 +297,8 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
   
+  #Cant get a secure connection, rails s wont use https and thin start -ssl wont launch 
 
-  # config.omniauth :github, ENV["GITHUB_KEY"], ENV["GITHUB_SECRET"], token_params: { parse: :json }
+  config.omniauth :github, ENV["GITHUB_KEY"], ENV["GITHUB_SECRET"]
 
-
-  #removed key and id so i can push to github
-  config.omniauth :github, 'SEE ENV FILE', 'SEE ENV FILE', :scope => 'user:email'
 end
