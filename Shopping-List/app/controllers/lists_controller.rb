@@ -3,11 +3,13 @@ class ListsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index 
-		current_user_lists
+		@current_user_list = current_user.lists
 	end
 
 	def show 
 		@list = List.find(params[:id])
+		@user_lists = current_user.lists[params[:id].to_i-1].item_lists
+		
 		
 		# access the item_list that matches my list id *@list.items*
 
@@ -17,6 +19,7 @@ class ListsController < ApplicationController
 		# to access array of all item lists = @list.item_lists
 
 		#update the view to show the newly added item
+		# reload :show
 	end
 
 	def new
@@ -34,18 +37,6 @@ class ListsController < ApplicationController
 	end
 
 private
-	
-	def current_user_lists
-		@current_user_list = []
-	 	@all_lists = List.all
-		@all_lists.each do |list|
-			if list.user_id == current_user.id
-				@current_user_list << list
-			end
-		end
-		@current_user_list
-	end
-
 
 	def list_params
 	  params.require(:list).permit(:name)

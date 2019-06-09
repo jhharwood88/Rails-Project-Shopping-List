@@ -10,6 +10,17 @@ class User < ApplicationRecord
     has_many :lists
     has_many :items, through: :lists
 
+    def self.current_user_lists
+    	binding.pry
+  		@user = current_user
+  		@lists = @user.lists.where()
+  	end
+
+  	def self.current_user_lists
+	  @user = current_user
+	  @lists = @user.lists.where(user_id: @user.id)
+	  @lists
+	end
 
 end
 
