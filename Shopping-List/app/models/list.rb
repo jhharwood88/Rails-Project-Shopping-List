@@ -4,7 +4,4 @@ class List < ApplicationRecord
   has_many :items, through: :item_lists
 
   validates :name, presence: true
-
-  binding.pry
-
 end
