@@ -1,11 +1,10 @@
 <center><h1><%= @list.name.upcase %></h1></center>
 
-<center><select name="list[items]">
-    <% Item.all.each do |item| %>
-        <option value="<%= item.id %>"><%= item.name%></option>
-    <% end %>
-</select></center>
-<center><input class="SubmitButton" type="submit" name="SUBMITBUTTON"              value="Add Item"/></center>
+<% @list.items.each do |item| %>
+<%binding.pry%>
+<center><p><%=item.name%></p></center>
+<%end%>
+
 
 <!-- 
 1. print out all the items on the item_list that is associated with this list *using collection select*

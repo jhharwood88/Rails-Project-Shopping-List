@@ -19,3 +19,84 @@ add shoppinglist id to itemlist
 
 new join on item list, shopping list is no longer a join table
 	a shopping list is always associated with a user, creating new list associates items with list through itemid.
+
+
+
+FOR SHOW 
+
+...                              ^
+[12] pry(#<ListsController>)> @list.items.build(
+[12] pry(#<ListsController>)* )  
+=> #<Item:0x00007fb798036f40 id: nil, name: nil, category: nil, price: nil>
+[13] pry(#<ListsController>)> @list.items.
+[13] pry(#<ListsController>)* 
+[13] pry(#<ListsController>)* build
+=> #<Item:0x00007fb79c040f00 id: nil, name: nil, category: nil, price: nil>
+[14] pry(#<ListsController>)> @list.items
+=> [#<Item:0x00007fb798036f40 id: nil, name: nil, category: nil, price: nil>, #<Item:0x00007fb79c040f00 id: nil, name: nil, category: nil, price: nil>]
+[15] pry(#<ListsController>)> @list.items.build(name: "potato"
+[15] pry(#<ListsController>)* )  
+=> #<Item:0x00007fb7a5a20c60 id: nil, name: "potato", category: nil, price: nil>
+[16] pry(#<ListsController>)> @list.items
+=> [#<Item:0x00007fb798036f40 id: nil, name: nil, category: nil, price: nil>,
+ #<Item:0x00007fb79c040f00 id: nil, name: nil, category: nil, price: nil>,
+ #<Item:0x00007fb7a5a20c60 id: nil, name: "potato", category: nil, price: nil>]
+[17] pry(#<ListsController>)> @list.items.build(name: "potato", category: "vegetable", price: 1)
+=> #<Item:0x00007fb78c31c8b0 id: nil, name: "potato", category: "vegetable", price: 0.1e1>
+[18] pry(#<ListsController>)> @list.items
+=> [#<Item:0x00007fb798036f40 id: nil, name: nil, category: nil, price: nil>,
+ #<Item:0x00007fb79c040f00 id: nil, name: nil, category: nil, price: nil>,
+ #<Item:0x00007fb7a5a20c60 id: nil, name: "potato", category: nil, price: nil>,
+ #<Item:0x00007fb78c31c8b0 id: nil, name: "potato", category: "vegetable", price: 0.1e1>]
+[19] pry(#<ListsController>)> @list.items[3]
+=> #<Item:0x00007fb78c31c8b0 id: nil, name: "potato", category: "vegetable", price: 0.1e1>
+[20] pry(#<ListsController>)> @list
+=> #<List:0x00007fb7a5a85610 id: 3, name: "Hardware", user_id: 1, created_at: Fri, 14 Jun 2019 20:18:53 UTC +00:00, updated_at: Fri, 14 Jun 2019 20:18:53 UTC +00:00>
+[21] pry(#<ListsController>)> 
+
+
+[1] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.items
+=> [#<Item:0x00007f0edc6b91e8 id: nil, name: nil, category: nil, price: nil>]
+[2] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.items.build(name: "Duck", category: "Meat", price: 10.00)
+=> #<Item:0x00007f0ed83f27b0 id: nil, name: "Duck", category: "Meat", price: 0.1e2>
+[3] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.items
+=> [#<Item:0x00007f0edc6b91e8 id: nil, name: nil, category: nil, price: nil>, #<Item:0x00007f0ed83f27b0 id: nil, name: "Duck", category: "Meat", price: 0.1e2>]
+[4] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.items[1]
+=> #<Item:0x00007f0ed83f27b0 id: nil, name: "Duck", category: "Meat", price: 0.1e2>
+[5] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.items[1].save
+   (0.1ms)  begin transaction
+  ↳ (pry):20
+  Item Exists (0.3ms)  SELECT  1 AS one FROM "items" WHERE "items"."name" = ? LIMIT ?  [["name", "Duck"], ["LIMIT", 1]]
+  ↳ (pry):20
+   (0.1ms)  rollback transaction
+  ↳ (pry):20
+=> false
+[6] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists
+  ItemList Load (0.2ms)  SELECT "item_lists".* FROM "item_lists" WHERE "item_lists"."list_id" = ?  [["list_id", 1]]
+  ↳ app/views/lists/show.html.erb:8
+=> []
+[7] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists.list_id
+NoMethodError: undefined method `list_id' for #<ActiveRecord::Associations::CollectionProxy []>
+from /home/jon-laptop/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/relation/delegation.rb:125:in `method_missing'
+[8] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists[0]
+=> nil
+[9] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists.build(quantity: 5, item_id: 1, list_id: 1)
+=> #<ItemList:0x00007f0ed85ebf80 id: nil, quantity: 5, item_id: 1, list_id: 1, created_at: nil, updated_at: nil>
+[10] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists
+=> [#<ItemList:0x00007f0ed85ebf80 id: nil, quantity: 5, item_id: 1, list_id: 1, created_at: nil, updated_at: nil>]
+[11] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists.item
+NoMethodError: undefined method `item' for #<ItemList::ActiveRecord_Associations_CollectionProxy:0x00007f0ed84ed5c0>
+from /home/jon-laptop/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/relation/delegation.rb:125:in `method_missing'
+[12] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists.item_id
+NoMethodError: undefined method `item_id' for #<ItemList::ActiveRecord_Associations_CollectionProxy:0x00007f0ed84ed5c0>
+from /home/jon-laptop/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/relation/delegation.rb:125:in `method_missing'
+[13] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists[0]
+=> #<ItemList:0x00007f0ed85ebf80 id: nil, quantity: 5, item_id: 1, list_id: 1, created_at: nil, updated_at: nil>
+[14] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists[0].item
+  Item Load (0.3ms)  SELECT  "items".* FROM "items" WHERE "items"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+  ↳ (pry):29
+=> #<Item:0x00007f0ed8881bf0 id: 1, name: "Chicken", category: "Meat", price: 0.5e1>
+[15] pry(#<#<Class:0x00007f0ee919aa60>>)> @list.item_lists[0].list
+=> #<List:0x00007f0edc6aa760 id: 1, name: "Groceries", user_id: 1, created_at: Fri, 14 Jun 2019 15:55:01 UTC +00:00, updated_at: Fri, 14 Jun 2019 15:55:01 UTC +00:00>
+[16] pry(#<#<Class:0x00007f0ee919aa60>>)> 
+

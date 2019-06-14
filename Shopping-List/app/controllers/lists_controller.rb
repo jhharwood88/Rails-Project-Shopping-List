@@ -8,28 +8,23 @@ class ListsController < ApplicationController
 
 	def show 
 		@list = List.find(params[:id])
-		@user_lists = current_user.lists[params[:id].to_i-1].item_lists
 		
 		
-		# access the item_list that matches my list id *@list.items*
 
-		#give a way for users to add an item to the item_list array
-
-		# ???
-		# to access array of all item lists = @list.item_lists
-
-		#update the view to show the newly added item
-		# reload :show
+		# console to add an item to item_list 
+		# @list.item_lists.build(quantity: 5, item_id: 1, list_id: 1)
 	end
 
 	def new
 		@list = List.new 
 		@list.user = current_user
+		
 	end
 
 	def create
 		@list = current_user.lists.build(list_params)
 		if @list.save
+			binding.pry
 			redirect_to user_list_path([@list.user,@list])
 		else
 			render :new
