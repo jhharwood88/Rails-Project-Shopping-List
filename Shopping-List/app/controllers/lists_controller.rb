@@ -8,7 +8,7 @@ class ListsController < ApplicationController
 
 	def show 
 		@list = List.find(params[:id])
-		
+
 		
 
 		# console to add an item to item_list 
@@ -24,7 +24,6 @@ class ListsController < ApplicationController
 	def create
 		@list = current_user.lists.build(list_params)
 		if @list.save
-			binding.pry
 			redirect_to user_list_path([@list.user,@list])
 		else
 			render :new

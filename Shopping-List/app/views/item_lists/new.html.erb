@@ -1,0 +1,18 @@
+<% if @item_list.errors %>
+  <%  @item_list.errors.full_messages.each do |error| %>
+    <h4><%= error %></h4>
+  <%end%>
+<%end%>
+<%= form_for @item_list do |f| %>
+  </br>
+  <%= f.label "Quantity" %></br>
+  <%= f.text_field :quantity %>
+  </br>
+  <%= f.label "List Id" %></br>
+  <%= f.text_field :list_id %>
+  </br>
+  <%= f.label "Item Id" %></br>
+  <%= f.text_field :item_id %>
+  </br>
+  <%= f.submit %>
+<% end %>

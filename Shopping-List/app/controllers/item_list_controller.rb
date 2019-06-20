@@ -1,2 +1,0 @@
-class ItemsListController < ApplicationController
-end
