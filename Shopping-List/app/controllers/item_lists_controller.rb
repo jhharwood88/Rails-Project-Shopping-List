@@ -2,6 +2,8 @@ class ItemListsController < ApplicationController
 
 	def new 
 		@item_list = ItemList.new
+		@items = Item.all
+		@lists = List.all
 	end
 
 	def create

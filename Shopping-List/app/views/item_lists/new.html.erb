@@ -16,3 +16,16 @@
   </br>
   <%= f.submit %>
 <% end %>
+<%= link_to "Return to Lists", user_lists_path, method: "get"%>
+<br>
+<h1>LISTS</h1>
+<% @lists.each do |item| %>
+  <p>Id:<%=item.id%></p>
+  <p>Name:<%=item.name%></p><br>
+<% end %>
+<br>
+<h1>ITEMS</h1>
+<% @items.each do |item| %>
+  <p>Id:<%=item.id%></p>
+  <p>Name:<%=item.name%></p><br>
+<% end %>
